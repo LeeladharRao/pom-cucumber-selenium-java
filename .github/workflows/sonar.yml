@@ -10,9 +10,15 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout Source
+      - uses: actions/checkout@v4
+      - name: Setup Java
+      - uses: actions/setup-java@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: Build Project
+        run: mvn clean install -DskipTests=True
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
