@@ -19,9 +19,9 @@ public class ExcelReaderAndWriter {
 	static Map<String, String> testDataMaster;
 	static Map<String, String> testData;
 
-	public static Map<String, String> ExcelTestDataMasterReader(Scenario scenario) {
+	public static Map<String, String> excelTestDataMasterReader(Scenario scenario) {
 
-		testDataMaster = new HashMap<String, String>();
+		testDataMaster = new HashMap<>();
 
 		String testDataFilePath = System.getProperty("user.dir") + ConfigReader.getProperty("testDataPath");
 
@@ -48,17 +48,15 @@ public class ExcelReaderAndWriter {
 			}
 
 			// get all cells and save to testdata collection
-			Row HeaderRow = sheet.getRow(0);
+			Row headerRow = sheet.getRow(0);
 			Row featureRow = sheet.getRow(featureNameRowIndex);
 			for (int i = 1; i < sheet.getRow(featureNameRowIndex).getLastCellNum(); i++) {
-				testDataMaster.put(HeaderRow.getCell(i).toString(), featureRow.getCell(i).toString());
+				testDataMaster.put(headerRow.getCell(i).toString(), featureRow.getCell(i).toString());
 			}
 
 			workbook.close();
 			fis.close();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,9 +64,9 @@ public class ExcelReaderAndWriter {
 		return testDataMaster;
 	}
 
-	public static Map<String, String> ExcelTestDataFunctionReader(Scenario scenario) {
+	public static Map<String, String> excelTestDataFunctionReader(Scenario scenario) {
 
-		testData = new HashMap<String, String>();
+		testData = new HashMap<>();
 
 		String testDataFilePath = System.getProperty("user.dir") + ConfigReader.getProperty("testDataPath");
 
@@ -95,17 +93,14 @@ public class ExcelReaderAndWriter {
 			}
 
 			// get all cells and save to testdata collection
-			Row HeaderRow = sheet.getRow(0);
+			Row headerRow = sheet.getRow(0);
 			Row featureRow = sheet.getRow(featureNameRowIndex);
 			for (int i = 1; i < sheet.getRow(featureNameRowIndex).getLastCellNum(); i++) {
-				testData.put(HeaderRow.getCell(i).toString(), featureRow.getCell(i).toString());
+				testData.put(headerRow.getCell(i).toString(), featureRow.getCell(i).toString());
 			}
 
 			workbook.close();
-			fis.close();
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,9 +1,9 @@
-package stepDefinition.Steps;
+package stepDefinition.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import managers.WebDriverManager;
-import pageObjects.Pages.UITestingPage;
+import pageobjects.pages.UITestingPage;
 
 public class UITestingSteps {
 
@@ -14,12 +14,12 @@ public class UITestingSteps {
 	}
 
 	@Given("launch the Application")
-	public void launch_the_application() {
+	public void launch_The_Application() {
 		uiTestingPage.launchApplication();
 	}
 
 	@Then("Navigate to {string}")
-	public void navigate_to(String link) {
+	public void navigate_To(String link) {
 		uiTestingPage.navigateToSubPage(link);
 	}
 

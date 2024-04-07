@@ -21,20 +21,20 @@ public class Hooks {
 	@Before(order = 0)
 	public void getScenarioFromTestDataExcel(Scenario scenario) {
 		// extracting excel testdata
-		testDataMaster = ExcelReaderAndWriter.ExcelTestDataMasterReader(scenario);
+		testDataMaster = ExcelReaderAndWriter.excelTestDataMasterReader(scenario);
 		LogManager.logMessage(testDataMaster.toString());
-		testData = ExcelReaderAndWriter.ExcelTestDataFunctionReader(scenario);
+		testData = ExcelReaderAndWriter.excelTestDataFunctionReader(scenario);
 		LogManager.logMessage(testData.toString());
 	}
 
 	@Before(order = 1)
-	public void launchBrowser() throws IOException {
+	public void launchBrowser() {
 		// creating webdriver session
 		this.driver = WebDriverManager.getDriver();
 	}
 
 	@After(order = 0)
-	public void After() {
+	public void after() {
 		// terminating webdriver session
 		WebDriverManager.quitDriver();
 	}
