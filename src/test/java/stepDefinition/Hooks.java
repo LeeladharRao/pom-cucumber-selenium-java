@@ -1,6 +1,5 @@
 package stepDefinition;
 
-import java.io.IOException;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;

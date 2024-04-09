@@ -12,7 +12,6 @@ import io.cucumber.junit.CucumberOptions;
 				"junit:target/cucumber-reports/cucumber.xml", 
 				"json:target/cucumber-reports/cucumber.json",
 				"html:target/cucumber-reports/cucumber.html",
-//				" utilities.CustomFormatter",
 //				"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"
 				},
 		monochrome = true )
