@@ -15,6 +15,7 @@ public class Constants {
 		public static final String LOCAL = "local";
 		public static final String BASEURL = "baseURL";
 		public static final String PROPERTIES_FILE_PATH = "configs//configuration.properties";
+		public static final String WELCOME_USERNAME = "Welcome UserName!";
 	}
 
 }

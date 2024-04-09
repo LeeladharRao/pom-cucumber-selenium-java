@@ -20,6 +20,7 @@ public class Hooks {
 	@Before(order = 0)
 	public void getScenarioFromTestDataExcel(Scenario scenario) {
 		// extracting excel testdata
+		LogManager.logMessage("=".repeat(100));
 		testDataMaster = ExcelReaderAndWriter.excelTestDataMasterReader(scenario);
 		LogManager.logMessage(testDataMaster.toString());
 		testData = ExcelReaderAndWriter.excelTestDataFunctionReader(scenario);
@@ -36,6 +37,7 @@ public class Hooks {
 	public void after() {
 		// terminating webdriver session
 		WebDriverManager.quitDriver();
+		LogManager.logMessage("=".repeat(100));
 	}
 
 }

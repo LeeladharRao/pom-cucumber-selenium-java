@@ -23,4 +23,19 @@ public class UITestingSteps {
 		uiTestingPage.navigateToSubPage(link);
 	}
 
+	@Then("Enter {string} in textbox and verify button text")
+	public void enter_in_textbox_and_verify_button_text(String text) {
+		uiTestingPage.enterTextandVerifyButtonText(text);
+	}
+
+	@Then("Click the button")
+	public void click_the_button() {
+		uiTestingPage.clickButton();
+	}
+
+	@Then("Verify the displayed text")
+	public void verify_the_displayed_text() {
+		uiTestingPage.verifyDisplayedText();
+	}
+
 }
