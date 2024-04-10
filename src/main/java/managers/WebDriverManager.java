@@ -1,41 +1,55 @@
 package managers;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import constants.Constants;
+import utilities.ConfigReader;
 
 public class WebDriverManager {
-	
+
 	private static WebDriver driver;
 
 	private static WebDriver createDriver() {
-		String browser = "edge";
-		String session = "local";
-		
-		System.out.println("session is set as "+session);
-		System.out.println("browser is set as "+browser);
-		
-		if (session.equalsIgnoreCase("local")) {
+		String session = ConfigReader.getProperty(Constants.ConfigConstants.SESSION);
+		LogManager.logMessage("Executing in : " + session);
+		String browser = ConfigReader.getProperty(Constants.ConfigConstants.BROWSER);
+		LogManager.logMessage("Executing in : " + browser);
+
+		if (session.equalsIgnoreCase(Constants.ConfigConstants.LOCAL)) {
 			if (browser.equalsIgnoreCase(Constants.ConfigConstants.BROWSER_CHROME)) {
-				driver = new ChromeDriver();			
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--headless=new");
+				driver = new ChromeDriver(options);
 			} else if (browser.equalsIgnoreCase(Constants.ConfigConstants.BROWSER_FIREFOX)) {
 				driver = new FirefoxDriver();
 			} else if (browser.equalsIgnoreCase(Constants.ConfigConstants.BROWSER_EDGE)) {
 				driver = new EdgeDriver();
 			}
+			driver.manage().window().maximize();
 		}
-		
+
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(200));
+
 		return driver;
 	}
-	
+
 	public static WebDriver getDriver() {
 		if (driver == null) {
 			driver = createDriver();
 		}
 		return driver;
 	}
-	
+
+	public static void quitDriver() {
+		driver.quit();
+		driver = null;
+	}
+
 }
