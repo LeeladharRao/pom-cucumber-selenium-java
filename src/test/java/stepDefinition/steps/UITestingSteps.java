@@ -37,5 +37,11 @@ public class UITestingSteps {
 	public void verify_the_displayed_text() {
 		uiTestingPage.verifyDisplayedText();
 	}
+	
+	@Then("Check and verify the visibility of buttons")
+	public void check_and_verify_the_visibility_of_buttons() {
+		uiTestingPage.verifyVisibilityOfButtons();
+	}
+
 
 }

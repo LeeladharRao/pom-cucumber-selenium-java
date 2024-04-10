@@ -41,6 +41,12 @@ public class UITestingPage extends BasePage {
 	@FindBy(how = How.XPATH, using = "//span[normalize-space(.)='Welcome UserName!']")
 	private WebElement textVerify;
 	
+	private By buttonVisibility = By.xpath("//td//button");
+	
+	@FindBy(how = How.XPATH, using = "(//td//button)[1]")
+	private WebElement firstButtonVisibility;
+	
+	
 	
 
 	public void launchApplication() {
@@ -59,6 +65,7 @@ public class UITestingPage extends BasePage {
 	}
 
 	public void enterTextandVerifyButtonText(String text) {
+		waitUntilElementVisible(inputTextBox);
 		inputTextBox.sendKeys(text);
 		button.click();
 		waitUntilElementVisible(subPageTitle);
@@ -68,14 +75,26 @@ public class UITestingPage extends BasePage {
 	}
 
 	public void clickButton() {
+		waitUntilElementVisible(button);
 		button.click();
 		LogManager.logMessage("Clicked on Button");
 	}
 
 	public void verifyDisplayedText() {
+		waitUntilElementVisible(textVerify);
 		String value = Constants.ConfigConstants.WELCOME_USERNAME;
 		Assert.assertTrue("Text " + textVerify.getText() + " does not match : " + value, textVerify.getText().equalsIgnoreCase(value));
 		LogManager.logMessage("Text " + textVerify.getText() + "matches : " + value);
+	}
+
+	public void verifyVisibilityOfButtons() {
+		for (WebElement e : driver.findElements(buttonVisibility)) {
+			Assert.assertTrue("Button " + e.getText() + " is not displayed", e.isDisplayed());
+			LogManager.logMessage("Button " + e.getText() + " is displayed");
+		}
+		waitUntilElementVisible(firstButtonVisibility);
+		firstButtonVisibility.click();
+		LogManager.logMessage("All Buttons visibility verified");
 	}
 
 }
