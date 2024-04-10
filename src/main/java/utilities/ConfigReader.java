@@ -9,8 +9,11 @@ import managers.LogManager;
 
 public class ConfigReader {
 
+	private ConfigReader() {
+		// DO Nothing
+	}
 
-	private static Properties getConfigReader() throws IOException {
+	public static Properties getConfigReader() throws IOException {
 		Properties properties = new Properties();
 		try (FileReader fr = new FileReader(Constants.ConfigConstants.PROPERTIES_FILE_PATH)) {
 			properties.load(fr);

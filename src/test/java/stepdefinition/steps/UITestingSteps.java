@@ -3,7 +3,7 @@ package stepdefinition.steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import managers.WebDriverManager;
-import pageObjects.pages.UITestingPage;
+import pageobjects.pages.UITestingPage;
 
 public class UITestingSteps {
 
