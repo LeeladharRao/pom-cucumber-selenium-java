@@ -16,6 +16,10 @@ import io.cucumber.java.Scenario;
 
 public class ExcelReaderAndWriter {
 
+	private ExcelReaderAndWriter() {
+		// DO Nothing
+	}
+
 	static Map<String, String> testDataMaster;
 	static Map<String, String> testData;
 
@@ -38,7 +42,7 @@ public class ExcelReaderAndWriter {
 					featureNameColumnIndex = cell.getColumnIndex();
 				}
 			}
-			
+
 			boolean tagPresentCheck = false;
 			for (Row row : sheet) {
 				Cell cell = row.getCell(featureNameColumnIndex);
@@ -48,7 +52,9 @@ public class ExcelReaderAndWriter {
 					break;
 				}
 			}
-			Assert.assertTrue("Scenario Tag is not present/matching with excel master sheet "+scenario.getSourceTagNames(), tagPresentCheck);
+			Assert.assertTrue(
+					"Scenario Tag is not present/matching with excel master sheet " + scenario.getSourceTagNames(),
+					tagPresentCheck);
 
 			// get all cells and save to testdata collection
 			Row headerRow = sheet.getRow(0);
@@ -58,7 +64,6 @@ public class ExcelReaderAndWriter {
 			}
 
 			workbook.close();
-			fis.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();

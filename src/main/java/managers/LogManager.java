@@ -2,7 +2,7 @@ package managers;
 
 public class LogManager {
 
-	public LogManager() {
+	private LogManager() {
 		// Nothing here
 	}
 

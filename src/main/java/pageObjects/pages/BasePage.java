@@ -1,4 +1,4 @@
-package pageObjects.Pages;
+package pageObjects.pages;
 
 import java.time.Duration;
 
@@ -22,7 +22,7 @@ public class BasePage {
 		String locatorString = path.toString();
 		String locatorType = "";
 		String locatorPath = "";
-		String locatorArray[] = locatorString.split(": ");
+		String[] locatorArray = locatorString.split(": ");
 		if (locatorArray.length <= 2) {
 			locatorPath = locatorArray[1];
 		} else {

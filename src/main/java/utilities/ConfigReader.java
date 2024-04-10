@@ -10,10 +10,11 @@ import managers.LogManager;
 public class ConfigReader {
 
 
-	public static Properties getConfigReader() throws IOException {
+	private static Properties getConfigReader() throws IOException {
 		Properties properties = new Properties();
-		FileReader fr = new FileReader(Constants.ConfigConstants.PROPERTIES_FILE_PATH);
-		properties.load(fr);
+		try (FileReader fr = new FileReader(Constants.ConfigConstants.PROPERTIES_FILE_PATH)) {
+			properties.load(fr);
+		}
 
 		return properties;
 	}

@@ -8,7 +8,7 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 		features = {"src/test/resources/features/"},
-		glue = { "stepDefinition" }, tags = "@UITestSampleOne" , plugin = {
+		glue = { "stepdefinition" }, tags = "@UITestSampleTwo" , plugin = {
 				"junit:target/cucumber-reports/cucumber.xml", 
 				"json:target/cucumber-reports/cucumber.json",
 				"html:target/cucumber-reports/cucumber.html",
