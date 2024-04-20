@@ -10,6 +10,7 @@ public enum SingletonEnum {
 
 	private final ThreadLocal<Map<String, Object>> testContexts = withInitial(HashMap::new);
 
+	@SuppressWarnings("unchecked")
 	public <T> T get(String name) {
 		return (T) testContexts.get().get(name);
 	}
