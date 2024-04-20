@@ -2,6 +2,8 @@ package stepdefinition;
 
 import java.util.Map;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.After;
@@ -34,10 +36,20 @@ public class Hooks {
 	}
 
 	@After(order = 0)
-	public void after() {
+	public void quitBrowser() {
 		// terminating webdriver session
 		WebDriverManager.quitDriver();
-		LogManager.logMessage("=".repeat(100));
+	}
+
+	@After(order = 1)
+	public void reports(Scenario scenario) {
+		// logging testcase status
+		LogManager.logMessage("=".repeat(40)+scenario.getStatus()+"=".repeat(40));
+
+		// Attach screenhot to report
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
+		scenario.attach(screenshot, "image/png", "Screenshot Attached");
 	}
 
 }
