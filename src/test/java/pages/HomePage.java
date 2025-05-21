@@ -2,29 +2,25 @@ package pages;
 
 import extentions.UIElements;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.LocatorReader;
+import utilities.OpenAIHelper;
 
 public class HomePage extends BasePage {
 
     private WebDriver driver;
-
-    //Locators
-    @FindBy(xpath = "//h5[text()='Elements']")
-    private WebElement lnkElements;
+    private String locators;
 
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+
+        locators = OpenAIHelper.GetLocatorsForPageAsJson(driver.getPageSource());
+        LocatorReader.loadLocatorsFromJson(locators);
     }
 
     public void navigateToElements() {
-        UIElements.performClick(lnkElements);
-    }
-
-    public void navigateToHomepage() {
-        UIElements.navigateToUrl("https://demoqa.com");
+        extentions.UIElements.performClick(driver.findElement(LocatorReader.findLocatorByPartialName("Elements")));
     }
 
 }

@@ -8,14 +8,14 @@ import java.util.logging.Logger;
 
 public class BasePage {
 
-    private final WebDriver driver;
-    UIElements uiElements;
+    private static WebDriver driver;
+    UIElements UIElements;
     Logger logger = Logger.getLogger("MyLogger");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        uiElements = new UIElements(driver);
+        UIElements = new UIElements(driver);
     }
 
 }

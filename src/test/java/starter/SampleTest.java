@@ -22,25 +22,25 @@ public class SampleTest {
         options.addExtensions(new File("adblock.crx"));
         driver = new ChromeDriver(options);
 
-        driver.navigate().to("https://demoqa.com");
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
     @Test
     public void testElements() {
-        // initialize
-        HomePage homePage = new HomePage(driver);
-        ElementsPage elementsPage = new ElementsPage(driver);
+        driver.navigate().to("https://demoqa.com");
 
-        // parameters
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToElements();
+
+        ElementsPage elementsPage = new ElementsPage(driver);
         String name = "Adrian K";
         String email = "adrian.k@test.com";
         String address = "Silk Street, Book Ave, USA";
         String permAddress = "Silk Street, Book Ave, USA";
-
-        homePage.navigateToElements();
         elementsPage.textBoxTest(name, email, address, permAddress);
-        homePage.navigateToHomepage();
+
+        driver.navigate().to("https://demoqa.com");
     }
 
     @AfterTest
