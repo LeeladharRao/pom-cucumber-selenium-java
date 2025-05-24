@@ -35,4 +35,12 @@ public class LogManager {
         LOGGER.error(message);
     }
 
+    //Warn Logging
+    public static void warn(String message) {
+        LOGGER.warn(message);
+    }
+
+    public static void warn(Object message) {
+        LOGGER.warn(message);
+    }
 }

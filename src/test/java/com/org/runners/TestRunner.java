@@ -8,7 +8,8 @@ import org.testng.annotations.Test;
 @Test
 @CucumberOptions(
         features = "src/test/resources",
-        glue = {},
+        glue = {"com.org.projects.ui.stepdefinitions",
+                "com.org.hooks"},
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber-reports.html",

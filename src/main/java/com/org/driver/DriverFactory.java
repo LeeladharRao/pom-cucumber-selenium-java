@@ -16,9 +16,9 @@ public class DriverFactory {
         Enums.Target target = Enums.Target.valueOf(Constants.TARGET.toUpperCase());
         WebDriver driver;
 
-        String browser = !System.getProperty("browser").equals("null") ? System.getProperty("browser") : Constants.BROWSER;
+        String browser = Constants.BROWSER;
 
-        switch(target) {
+        switch (target) {
             case LOCAL:
                 driver = BrowserManager.valueOf(browser.toUpperCase()).createDriver();
                 break;
@@ -39,9 +39,9 @@ public class DriverFactory {
             remoteWebDriver = new RemoteWebDriver(new URL(gridURL), capabilities);
         } catch (java.net.MalformedURLException e) {
             LogManager.error("Grid URL is invalid or Grid Port is not available");
-            LogManager.error("Browser: "+ capabilities.getBrowserName() + e);
+            LogManager.error("Browser: " + capabilities.getBrowserName() + e);
         } catch (IllegalArgumentException e) {
-            LogManager.error("Browser %s is not valid or recognized "+ capabilities.getBrowserName() + e);
+            LogManager.error("Browser %s is not valid or recognized " + capabilities.getBrowserName() + e);
         }
 
         return remoteWebDriver;

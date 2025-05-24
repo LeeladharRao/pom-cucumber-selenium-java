@@ -36,7 +36,7 @@ public class Hooks {
 
     @Before
     public static void before(Scenario scenario) {
-        LogManager.info("Executing Scenario Name: "+ scenario.getName());
+        LogManager.info("Executing Scenario Name: " + scenario.getName());
         Constants.count_totalTCs = Constants.count_totalTCs + 1;
 
         String browserName = (System.getProperty("browser") != null && !System.getProperty("browser").isEmpty()) ? System.getProperty("browser")

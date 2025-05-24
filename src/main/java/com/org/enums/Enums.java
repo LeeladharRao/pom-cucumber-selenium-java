@@ -2,7 +2,7 @@ package com.org.enums;
 
 public class Enums {
 
-    private Enums(){
+    private Enums() {
     }
 
     public enum Browser {
